@@ -33,8 +33,9 @@ deployment:
     name: *name
     tag: latest
   limits:
-    memory_request: 2Gi
-    memory_limit: 6Gi
+    # Lowered memory lmits
+    memory_request: 1Gi
+    memory_limit: 4Gi
     cpu_request: 500m
     cpu_limit: 1
   env_vars:
@@ -61,9 +62,9 @@ deployment:
     - name: GITLAB_GROUP_NAME
       value: rht-labs
 
-# persistence:
-#   accessModes: ReadWriteOnce
-#   volumeSize: 20Gi
+persistence:
+  accessModes: ReadWriteOnce
+  volumeSize: 20Gi
 
 services:
   - name: *name
@@ -90,22 +91,22 @@ buildconfigs:
     builder_image_tag: "latest"
   # Jenkins agents for running builds etc
   # default names, versions, repo and paths set on the template
-  - name: jenkins-agent-ansible
-  - name: jenkins-agent-arachni
-  - name: jenkins-agent-argocd
-  - name: jenkins-agent-conftest
-  - name: jenkins-agent-erlang
-  - name: jenkins-agent-golang
-  - name: jenkins-agent-graalvm
-  - name: jenkins-agent-gradle
-  - name: jenkins-agent-helm
-  - name: jenkins-agent-image-mgmt
-  - name: jenkins-agent-mongodb
-  - name: jenkins-agent-mvn
-  - name: jenkins-agent-npm
-  - name: jenkins-agent-python
-  - name: jenkins-agent-ruby
-  - name: jenkins-agent-rust
+  # - name: jenkins-agent-ansible
+  # - name: jenkins-agent-arachni
+  # - name: jenkins-agent-argocd
+  # - name: jenkins-agent-conftest
+  # - name: jenkins-agent-erlang
+  # - name: jenkins-agent-golang
+  # - name: jenkins-agent-graalvm
+  # - name: jenkins-agent-gradle
+  # - name: jenkins-agent-helm
+  # - name: jenkins-agent-image-mgmt
+  # - name: jenkins-agent-mongodb
+  # - name: jenkins-agent-mvn
+  # - name: jenkins-agent-npm
+  # - name: jenkins-agent-python
+  # - name: jenkins-agent-ruby
+  # - name: jenkins-agent-rust
 
 ## This works with the Jenkins Configuration-as-Code plugin. You can put all sorts of declarative configuration
 ## into this `body` and Jenkins will load it on start, even when using ephemeral Jenkins.
